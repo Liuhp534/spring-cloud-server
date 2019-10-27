@@ -15,12 +15,12 @@ public class ZuulController {
     @RequestMapping("/redirectSearchById")
     public String redirectSearchById(Integer id) {
         logger.info("ZuulController.redirectSearchById {}", id);
-        int i = 1;
-        if (i == 0) {
+        //id = 0;
+        if (id == 0) {
             return "redirect:/zuul/success";
         }
-        if (i == 1) {
-            return "forward:/zuul/success";
+        if (id == 1) {
+            return "forward:/zuul/fail";
         }
         return "fail";
     }
@@ -29,6 +29,12 @@ public class ZuulController {
     public String success() {
         logger.info("ZuulController.success");
         return "success";
+    }
+
+    @RequestMapping("/fail")
+    public String fail() {
+        logger.info("ZuulController.fail");
+        return "fail";
     }
 
 }
