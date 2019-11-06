@@ -20,6 +20,7 @@
         <module>spring-cloud-eureka</module>
         <module>spring-cloud-zuul</module>
         <module>spring-cloud-echarts</module>
+        <module>spring-cloud-common</module>
     </modules>
 
 
