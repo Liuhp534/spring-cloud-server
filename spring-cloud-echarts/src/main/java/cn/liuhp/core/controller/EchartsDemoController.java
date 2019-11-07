@@ -8,7 +8,7 @@ public class EchartsDemoController {
 
 
     @RequestMapping("/helloWorld")
-    public String helloWorld() {
+    public String  helloWorld() {
         return "helloWorld";
     }
 
