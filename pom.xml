@@ -21,7 +21,7 @@
         <module>spring-cloud-zuul</module>
         <module>spring-cloud-echarts</module>
         <module>spring-cloud-common</module>
-        <module>spring-cloud-iview-web</module>
+        <module>spring-cloud-iView-web</module>
     </modules>
 
 
