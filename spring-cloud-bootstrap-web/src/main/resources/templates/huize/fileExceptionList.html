@@ -1,0 +1,117 @@
+<#include "../common/header.html" parse=true encoding="utf-8"/>
+<form class="form-horizontal" method="GET" onsubmit=" return false; ">
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="createTimeStart">投保时间</label>
+            <div class="col-sm-3">
+                <div class="input-daterange input-group">
+                    <input class="form-control" type="text" id="createTimeStart" name="createTimeStart" placeholder="开始">
+                    <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                    <input class="form-control" type="text" id="createTimeEnd" name="createTimeEnd" placeholder="结束">
+                </div>
+            </div>
+            <label class="col-sm-1 control-label" for="insureNum">投保单号</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="insureNum" name="insureNum"/>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="search();">查询</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal fade" id="showIsTips" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <span style="color: #c6090f;" id="errorSpanText"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block">
+    <div class="block-content">
+        <table id="datatable" class="table table-bordered table-header-bg">
+            <thead>
+            <th>投保单号</th>
+            <th>投保时间</th>
+            <th>被保人数</th>
+            <th>文件数</th>
+            </thead>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+  var table;
+
+  function search() {
+    table.api().ajax.reload();
+  }
+
+  $(function () {
+
+    // 设置时间为当天
+    var now = new Date()
+    $('#createTimeStart').datepicker("setDate", now)
+    $('#createTimeEnd').datepicker("setDate", now)
+
+    table = $('#datatable').dataTable({
+      "searching": false,
+      "ordering": false,
+      "processing": true,
+      "serverSide": true,
+      bAutoWidth: false,
+      bLengthChange: false,
+      "ajax": {
+        "url": "getFileExceptionList",
+        "type": "GET",
+        "data": function (d) {
+          if ($('#createTimeStart').val() == "") {
+            var myDate = new Date();
+            var date = myDate.getDate();
+            date = date - 5;
+            myDate.setDate(date);
+            d.createTimeStart = myDate;
+          } else {
+            d.createTimeStart = new Date($('#createTimeStart').val().replace(/-/g, "/"));
+          }
+          if ($('#createTimeEnd').val() == "") {
+            d.createTimeEnd = new Date();
+          } else {
+            d.createTimeEnd = new Date($('#createTimeEnd').val().replace(/-/g, "/"));
+          }
+          d.createTimeStart.setHours(0,0,0,0);
+          d.createTimeEnd.setHours(23,59,59,999);
+          d.insureNum = $.trim($('#insureNum').val());
+        }
+      },
+      "columns": [
+        {
+          "data": "insureNum",
+          "render": renderShowInsureDetailUrl
+        },
+        {"data": "createTime"},
+        {"data": "insurantCount"},
+        {"data": "fileCount"}
+      ]
+    });
+
+  });
+
+  function renderShowInsureDetailUrl(id, type, row) {
+    var showUrl = "<a href='javascript:openInsureDetail(" + row.insureNum + ")'>" + row.insureNum + "</a>";
+    return showUrl;
+  }
+
+  function openInsureDetail(insurenum) {
+    var title = "订单/保单详情-" + insurenum;
+    hz.openWindowTab(insurenum, title, "http://in.hzins.com/pluto/is/insure/" + insurenum);
+  }
+</script>

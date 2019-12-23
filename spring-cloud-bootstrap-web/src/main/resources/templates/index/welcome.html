@@ -1,0 +1,104 @@
+<#assign customServletpath=request.contextPath/>
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9 no-focus"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-focus"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>PLUTO - IS OMS</title>
+    <meta name="description" content="PLUTO - IS OMS">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <link rel="shortcut icon" href="${customServletpath}/assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="57x57" href="${customServletpath}/assets/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${customServletpath}/assets/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${customServletpath}/assets/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${customServletpath}/assets/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${customServletpath}/assets/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${customServletpath}/assets/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${customServletpath}/assets/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${customServletpath}/assets/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${customServletpath}/assets/img/favicons/apple-touch-icon-180x180.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" id="css-main" href="${customServletpath}/assets/css/oneui.min.css">
+    <link rel="stylesheet" id="css-theme" href="${customServletpath}/assets/css/themes/modern.min.css">
+    <link rel="stylesheet" href="${customServletpath}/assets/css/common.css">
+</head>
+<body>
+<div class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+    <main id="main-container">
+        <div class="content" style="background-color:#eee">
+            <div class="row items-push">
+                <div class="col-sm-8">
+                    <h1 class="page-heading">
+                        WELCOME <small>个险运营平台</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="content content-narrow">
+            <h2 class="content-heading"></h2>
+            <div class="block" style="background-color:#f5f5f5">
+                <div class="block-content block-content-full">
+                    <div class="row js-animation-section">
+                        <div class="col-md-6">
+                            <h5 class="font-w400 push"><button id="clickMe" class="btn btn-block btn-default" data-animation-class="flipInX">快速导航</button></h5>
+                            <div class="row items-push">
+                                <div class="col-sm-6">
+                                    <button class="btn btn-block btn-default" onclick="openWindowPlutoIsWeb()">pluto-is-web</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-block btn-default" onclick="openWindowPlutoPsWeb()">pluto-ps-web</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-block btn-default" onclick="openWindowOdmspy()">odmspy</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-block btn-default" onclick="openWindowScheduler()">scheduler</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1">
+                            <div class="js-animation-object">
+                                <img class="center-block img-responsive" src="${customServletpath}/assets/img/various/little-monster.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="${customServletpath}/assets/js/core/jquery.min.js"></script>
+<script src="${customServletpath}/assets/js/core/bootstrap.min.js"></script>
+<script src="${customServletpath}/assets/js/core/jquery.slimscroll.min.js"></script>
+<script src="${customServletpath}/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="${customServletpath}/assets/js/core/jquery.appear.min.js"></script>
+<script src="${customServletpath}/assets/js/core/jquery.countTo.min.js"></script>
+<script src="${customServletpath}/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="${customServletpath}/assets/js/core/js.cookie.min.js"></script>
+<script src="${customServletpath}/assets/js/app.js"></script>
+<script src="${customServletpath}/assets/js/pages/base_comp_animations.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#clickMe").trigger("click");
+    })
+    function openWindowPlutoIsWeb(){
+        window.open("http://in.hzins.com/pluto/is/index.jsp");
+    }
+    function openWindowPlutoPsWeb(){
+        window.open("http://in.hzins.com/pluto/ps/pages/index.jsp");
+    }    function openWindowOdmspy(){
+        window.open("http://odmspy.hzins.com/");
+    }
+    function openWindowScheduler(){
+        window.open("http://in.hzins.com/scheduler/index");
+    }
+</script>
+</body>
+</html>

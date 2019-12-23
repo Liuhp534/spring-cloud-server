@@ -1,0 +1,278 @@
+<#include "../common/header.html" parse=true encoding="utf-8"/>
+<form class="form-horizontal" method="GET" onsubmit=" return false; ">
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="insureNum" style="width:200px">投保单号:</label>
+            <div class="col-sm-2">
+                <!--<input type="text" class="form-control" id="insureNum" name="insureNum"></input>-->
+                <textarea rows="2" id="insureNum" cols="32"></textarea><br/>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="retryGetEco();">重新出单(会发出单消息)</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="insureNum" style="width:200px">投保单号:</label>
+            <div class="col-sm-2">
+                <!--<input type="text" class="form-control" id="syncInsureNum"></input>-->
+                <textarea rows="2" id="syncInsureNum" cols="32"></textarea><br/>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="retrySyncIssue();">重试同步数据给对接</button>
+            </div>
+        </div>
+    </div>
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="insureNum" style="width:200px">投保单号:</label>
+            <div class="col-sm-2">
+                <textarea rows="2" id="concurrentInsureNums" cols="32"></textarea><br/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="repairDataType" style="width: 280px;">
+                    <option value="">请选择</option>
+                    <option value="1">不发出单消息，清除旧保单</option>
+                    <option value="2">不发出单消息，不清除旧保单</option>
+                </select>
+                <button class="btn btn-minw btn-primary" type="button" onclick="batchIssue();">处理重新出单(只用于并发造成的异常数据)</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<form class="form-horizontal" method="GET" onsubmit=" return false; ">
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="insureNum20" style="width:200px">投保单号</label>
+            <input type="radio" name="email" value='1'/>是&nbsp;<input type="radio" name="email" value='0' checked/>否
+            <input type="radio" name="sms" value='1'/>是&nbsp;<input type="radio" name="sms" value='0' checked/>否
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="insureNum20" name="insureNum20">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="retryInsureNum(20);">重新广播（出单成功）</button>
+            </div>
+        </div>
+    </div>
+</form>-->
+<form class="form-horizontal" method="GET" onsubmit=" return false; ">
+    <div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="insureNumBrodcast" style="width:200px">投保单号</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="insureNumBrodcast" name="insureNumBrodcast">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="retryInsureNum(81);">重新广播（businessType=81）</button>
+                <button class="btn btn-minw btn-primary" type="button" onclick="retryInsureNum(85);">重新广播（businessType=85）</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form class="form-horizontal" method="GET" onsubmit=" return false; ">
+	<div class="block-content block-content-full">
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="oldInsureNum" style="width:200px">旧投保单号：</label>
+            <div class="col-sm-2"><input type="text" class="form-control" id="oldInsureNum" name="oldInsureNum"></div>
+            <label class="col-sm-1 control-label" for="newInsureNum" style="width:200px">新投保单号：</label>
+            <div class="col-sm-2"><input type="text" class="form-control" id="newInsureNum" name="newInsureNum"></div>
+            <div class="col-sm-2">
+                <button class="btn btn-minw btn-primary" type="button" onclick="repairRelation();">修复被保人与保单号关系数据</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="showIsTips" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <span style="color: #c6090f;" id="errorSpanText"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	function repairRelation()
+	{
+		var oldInsureNum=$.trim($('#oldInsureNum').val());
+		var newInsureNum=$.trim($('#newInsureNum').val());
+		if(oldInsureNum=="" || newInsureNum=="") {
+            $('#errorSpanText').html("请输入投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+		$.post("repairRelation", {
+            "oldInsureNum" : oldInsureNum,
+            "newInsureNum" : newInsureNum,
+        }, function(data) {
+            if (data.map.status == "101") {
+                $('#errorSpanText').html("操作成功!");
+                $('#showIsTips').modal('show');
+                $("#datatable").dataTable().api().ajax.reload();
+            } else {
+                $('#errorSpanText').html(data.map.msg);
+                $('#showIsTips').modal('show');
+            }
+        }, "json");
+	}
+	
+    function retryGetEco(){
+        var insureNum=$.trim($('#insureNum').val());
+        if(insureNum=="") {
+            $('#errorSpanText').html("请输入投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        /*var reg = new RegExp("^[0-9]*$");
+        if(!reg.test(insureNum)){
+            $('#errorSpanText').html("请输入正确的投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }*/
+        var reg = new RegExp("^[0-9]*$");
+        var insureNumArr = insureNum.split(",");
+        for (var i=0; i < insureNumArr.length; i++) {
+            if(!reg.test(insureNumArr[i])){
+                $('#errorSpanText').html("请输入正确的投保单号!");
+                $('#showIsTips').modal('show');
+                return;
+            }
+        }
+        
+        $.post("tryIssue", {
+            "insurenums" : insureNum
+        }, function(data) {
+            if (data.map.status == "101") {
+                $('#errorSpanText').html("操作成功!");
+                $('#showIsTips').modal('show');
+                $("#datatable").dataTable().api().ajax.reload();
+            } else {
+                $('#errorSpanText').html(data.map.msg);
+                $('#showIsTips').modal('show');
+            }
+        }, "json");
+    }
+    
+    /*
+    * 处理201810并发造成的数据异常
+    * */
+    function batchIssue(){
+        var insureNums = $.trim($('#concurrentInsureNums').val());
+        var repairDataType = $('#repairDataType').val()
+        repairDataType = repairDataType || "";
+        if (repairDataType == "") {
+            $('#errorSpanText').html("请选择修复类型!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        if(insureNums=="") {
+            $('#errorSpanText').html("请输入投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        var reg = new RegExp("^[0-9]*$");
+        var insureNumArr = insureNums.split(",");
+        for (var i=0; i < insureNumArr.length; i++) {
+            if(!reg.test(insureNumArr[i])){
+                $('#errorSpanText').html("请输入正确的投保单号!");
+                $('#showIsTips').modal('show');
+                return;
+            }
+        }
+
+        $.post("batchIssue", {
+            "insurenums" : insureNums, "repairDataType" : repairDataType
+        }, function(data) {
+            if (data.map.status == "101") {
+                $('#errorSpanText').html("操作成功!");
+                $('#showIsTips').modal('show');
+                $("#datatable").dataTable().api().ajax.reload();
+            } else {
+                $('#errorSpanText').html(data.map.msg);
+                $('#showIsTips').modal('show');
+            }
+        }, "json");
+    }
+
+    function retrySyncIssue(){
+        var insureNum=$.trim($('#syncInsureNum').val());
+        if(insureNum=="") {
+            $('#errorSpanText').html("请输入投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        /*var reg = new RegExp("^[0-9]*$");
+        if(!reg.test(insureNum)){
+            $('#errorSpanText').html("请输入正确的投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }*/
+        var reg = new RegExp("^[0-9]*$");
+        var insureNumArr = insureNum.split(",");
+        for (var i=0; i < insureNumArr.length; i++) {
+            if(!reg.test(insureNumArr[i])){
+                $('#errorSpanText').html("请输入正确的投保单号!");
+                $('#showIsTips').modal('show');
+                return;
+            }
+        }
+
+        $.post("retrySyncIssue", {
+            "insurenums" : insureNum
+        }, function(data) {
+            if (data.map.status == "101") {
+                $('#errorSpanText').html("操作成功!");
+                $('#showIsTips').modal('show');
+                $("#datatable").dataTable().api().ajax.reload();
+            } else {
+                $('#errorSpanText').html(data.map.msg);
+                $('#showIsTips').modal('show');
+            }
+        }, "json");
+    }
+    
+    
+    function retryInsureNum(businessType){
+        var insureNum=$.trim($('#insureNumBrodcast').val());
+
+        if(insureNum=="") {
+            $('#errorSpanText').html("请输入投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        var reg = new RegExp("^[0-9]*$");
+        if(!reg.test(insureNum)){
+            $('#errorSpanText').html("请输入正确的投保单号!");
+            $('#showIsTips').modal('show');
+            return;
+        }
+        $.post("trybroadCast", {
+            "insurNum" : insureNum,
+            "businessType":businessType,
+            "isSendEmail":0,
+            "isSendSms": 0,
+        }, function(data) {
+            if (data.map.status == "101") {
+                $('#errorSpanText').html("操作成功!");
+                $('#showIsTips').modal('show');
+                $("#datatable").dataTable().api().ajax.reload();
+            } else {
+                $('#errorSpanText').html(data.map.msg);
+                $('#showIsTips').modal('show');
+            }
+        }, "json");
+    }
+</script>

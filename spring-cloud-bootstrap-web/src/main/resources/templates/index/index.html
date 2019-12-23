@@ -1,0 +1,132 @@
+<#assign customServletpath=request.contextPath />
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9 no-focus"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-focus"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Pluto - IS Annual</title>
+    <meta name="description" content="Pluto - IS Annual">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <link rel="shortcut icon" href="${customServletpath}/assets/img/favicons/favicon.png">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="${customServletpath}/assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="57x57" href="${customServletpath}/assets/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${customServletpath}/assets/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${customServletpath}/assets/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${customServletpath}/assets/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${customServletpath}/assets/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${customServletpath}/assets/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${customServletpath}/assets/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${customServletpath}/assets/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${customServletpath}/assets/img/favicons/apple-touch-icon-180x180.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" id="css-main" href="${customServletpath}/assets/css/oneui.min.css">
+    <link rel="stylesheet" id="css-theme" href="${customServletpath}/assets/css/themes/modern.min.css">
+    <link rel="stylesheet" href="${customServletpath}/assets/css/common.css">
+    <link href="${customServletpath}/css/jquery.contextmenu.css" rel="stylesheet"/>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden">
+<div id="wrapper">
+    <div id="page-container"
+         class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+        <aside id="side-overlay">
+            <div id="side-overlay-scroll">
+                <div class="side-header side-content">
+                    <button class="btn btn-default pull-right" type="button" data-toggle="layout" data-action="side_overlay_close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <span class="font-w600 push-10-l">Admin</span>
+                </div>
+                <div class="side-content remove-padding-t">
+                    <div class="block pull-r-l">
+                        <div class="block-header bg-gray-lighter">
+                            <ul class="block-options">
+                                <li>
+                                    <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                                </li>
+                                <li>
+                                    <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
+                                </li>
+                            </ul>
+                            <h3 class="block-title">Block</h3>
+                        </div>
+                        <div class="block-content">
+                            <p>...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <nav id="sidebar">
+            <div id="sidebar-scroll">
+                <div class="sidebar-content">
+                    <div class="side-header side-content bg-white-op" style="text-align:center;">
+                        <button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <a class="h5 text-white" href="#" >
+                            <span class="h4 font-w600 sidebar-mini-hide" >续保系统</span>
+                        </a>
+                    </div>
+                    <div class="side-content">
+                        <ul class="nav-main" id="left-nav-container">
+                            <li>
+                                <a href="javascript:;" ref="index" class="J_menuTab"><i class="fa fa-home"></i><span class="sidebar-mini-hide">首页</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation"
+                     style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <button
+                                class="navbar-minimalize minimalize-styl-2  btn btn-default"
+                                data-toggle="layout" data-action="sidebar_mini_toggle"
+                                type="button">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-custom">
+                        <h1 class="minimalize-styl-2 h3">Pluto Is Annual</h1>
+                    </div>
+                    <div style="float: right; margin: 30px 30px 0 0;">
+                        <a href="http://ims.hzins.com/Login/SignOut" id="loginOut">
+                            注销 <i class="si si-logout fa"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft">
+                    <i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content" style="float: left;" id="page-tabs-content">
+                        <a ref="index" href="javascript:;" class="J_menuTab active" data-id="menuId_index">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight">
+                    <i class="fa fa-forward"></i>
+                </button>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframeindex" id="iframeindex" width="100%" height="100%" src="welcome" frameborder="0" data-id="menuId_index" seamless></iframe>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${customServletpath}/assets/js/oneui.min.js"></script>
+<script src="${customServletpath}/js/jquery.contextmenu.js" ></script>
+<script src="${customServletpath}/js/common/index.js"></script>
+</body>
+</html>

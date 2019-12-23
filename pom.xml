@@ -22,6 +22,7 @@
         <module>spring-cloud-echarts</module>
         <module>spring-cloud-common</module>
         <module>spring-cloud-iView-web</module>
+        <module>spring-cloud-bootstrap-web</module>
     </modules>
 
 

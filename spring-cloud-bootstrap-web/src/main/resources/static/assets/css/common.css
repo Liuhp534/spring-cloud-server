@@ -1,0 +1,149 @@
+body, body.full-height-layout #page-wrapper, body.full-height-layout #wrapper, html {
+	height: 100%;
+}
+
+#wrapper {
+	width: 100%;
+	overflow-x: hidden;
+	background-color: #2f4050;
+}
+#page-wrapper{
+	padding: 0 15px;
+	position: inherit;
+}
+#page-container {
+	height:100%;	
+}
+
+.navbar {
+	border: 0;
+	height:60px;
+}
+
+.navbar-custom {
+	float: left;
+	height: 60px;
+	padding: 0;
+	width: 300px;
+	display: inline-table;
+	font-size:24px;
+}
+.navbar-fixed-top, .navbar-static-top {
+	background: #f3f3f4;
+}
+.minimalize-styl-2 {
+	padding: 4px 5px;
+	margin: 15px 5px 5px 15px;
+	float: left;
+}
+
+#content-main {
+	height: calc(100% - 150px);
+	overflow: hidden;
+}
+
+.footer {
+	background: none repeat scroll 0 0 #fff;
+	border-top: 1px solid #e7eaec;
+	overflow: hidden;
+	padding: 10px 20px;
+	margin: 0 -15px;
+	height: 36px;
+}
+
+.content-tabs {
+	position: relative;
+	height: 43px;
+	background: #fafafa;
+	line-height: 40px;
+	border-bottom: solid 2px #2f4050;
+	border-top: solid 1px #eee;
+}
+
+.content-tabs .roll-left {
+	left: 0;
+	border-right: solid 1px #eee;
+}
+
+.content-tabs .roll-nav {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: #999;
+	z-index: 2;
+	top: 0;
+}
+
+.content-tabs button {
+	background: #fff;
+	border: 0;
+	height: 40px;
+	width: 40px;
+	outline: 0;
+}
+
+nav.page-tabs {
+	margin-left: 40px;
+	width: 100000px;
+	height: 40px;
+	overflow: hidden;
+}
+
+nav.page-tabs .page-tabs-content {
+	float: left;
+}
+
+.page-tabs a {
+	display: block;
+	float: left;
+	border-right: solid 1px #eee;
+	padding: 0 15px;
+	color: #999;
+}
+.J_menuTab {
+	-webkit-transition: all .3s ease-out 0s;
+	transition: all .3s ease-out 0s;
+}
+a {
+	cursor: pointer;
+}
+
+.page-tabs a {
+	display: block;
+	float: left;
+	border-right: solid 1px #eee;
+	padding: 0 15px;
+}
+
+.page-tabs a.active {
+	background: #2f4050;
+	color: #a7b1c2;
+}
+
+.page-tabs a i {
+	color: #ccc;
+	margin-left:3px;
+}
+
+.content-tabs .roll-right {
+	right: 0;
+	border-left: solid 1px #eee;
+}
+
+.roll-right.J_tabRight {
+	right: 0px;
+}
+
+/*********������ʾStyle******/
+.row-col{margin-right: 0px;margin-left: 0px;}
+.row-col .row { margin-right: 0px;margin-left: 0px;}
+.leftBackColor{ background-color:#E7F0EA; text-align:right;}
+.row-col .row div { padding:5px 10px 5px 10px; border-bottom:1px #ccc solid; height:31px;}
+.row-col .panel-heading{font-weight:bold; background-color: #70b9eb; color:#fff;}
+.row-col .panel{margin-bottom:0px;}
+.bg-gray-lighter {background-color: #eee;color:#fff;}
+.block-content-tabs {padding:1px;}
+.block-content-tabs-left{padding-right:5px;padding-left:0px;}
+.block-content-tabs-right{padding-left:5px;padding-right:0px;}
+#datatable_wrapper .row div{border-bottom: 0;height:auto;}
