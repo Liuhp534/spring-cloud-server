@@ -21,6 +21,10 @@ public class BootstrapController {
         return "index/welcome";
     }
 
+    @RequestMapping("/importExcel")
+    public String importExcel() {
+        return "annual/importExcel";
+    }
 
     @RequestMapping("/home/GetMenu")
     @ResponseBody
@@ -50,7 +54,7 @@ public class BootstrapController {
     private List<MenuModelDTO> get700ChildMenus() {
         List<MenuModelDTO> childMenus = new ArrayList<MenuModelDTO>();
         childMenus.add(createMenu("101", "续保单明细", "annuity/toAnnuityApplyList"));
-        childMenus.add(createMenu("102", "续保单导入", "annuity/toTriggerPage"));
+        childMenus.add(createMenu("102", "续保单导入", "importExcel"));
         return childMenus;
     }
 }
