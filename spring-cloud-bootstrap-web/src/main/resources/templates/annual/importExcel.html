@@ -8,7 +8,17 @@
 </head>
 <body>
 
-<input id="input-2" name="input2" type="file fileloading" class="file">
-<input id="input-1a" type="file" class="file" data-show-preview="false">
+<input id="file" type="file" class="" data-show-preview="false">
 </body>
+<script type="text/javascript">
+    $(function(){
+       $("#file").fileinput({
+          language:'zh',
+          showUpload:false,
+          uploadUrl:"http://127.0.0.1/testDemo/fileupload/upload.do", //上传的地址
+        });
+    })
+
+
+</script>
 </html>
