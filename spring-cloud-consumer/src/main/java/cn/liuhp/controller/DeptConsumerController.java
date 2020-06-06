@@ -3,9 +3,12 @@ package cn.liuhp.controller;
 
 import cn.liuhp.constant.UrlConstants;
 import cn.liuhp.entity.Dept;
+import com.netflix.loadbalancer.BaseLoadBalancer;
+import com.netflix.loadbalancer.ILoadBalancer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("/deptConsumer")
 public class DeptConsumerController {
@@ -23,7 +28,9 @@ public class DeptConsumerController {
     private static final Logger logger = LoggerFactory.getLogger(DeptConsumerController.class);
 
     @Autowired
+    @LoadBalanced
     private RestTemplate restTemplate;
+
 
 
     @RequestMapping("/searchById")
