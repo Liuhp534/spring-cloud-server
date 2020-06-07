@@ -28,6 +28,13 @@ public class FeignController {
         return deptFeignApi.searchById(id);
     }
 
+    @RequestMapping("/searchByFeignParam")
+    @ResponseBody
+    public Dept searchByFeignParam(Dept param) {
+        log.info("cn.liuhp.controller.FeignController.searchByFeignParam {}", param);
+        return deptFeignApi.searchByParam(param);
+    }
+
 
 
 
