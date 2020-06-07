@@ -23,6 +23,7 @@
         <module>spring-cloud-common</module>
         <module>spring-cloud-iView-web</module>
         <module>spring-cloud-bootstrap-web</module>
+        <module>spring-cloud-feign</module>
     </modules>
 
 
